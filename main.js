@@ -24,7 +24,7 @@ module.exports.loop = function () {
             roomSetup.run(currentRoom);
             currentRoom.memory.setupComplete = true;
         }
-        
+        // Testwwww
         currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
         roomFoundations.buildRoom(currentRoom);
         // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
