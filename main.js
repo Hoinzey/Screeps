@@ -1,6 +1,6 @@
 var creepHandler = require('creepHandler');
 var creepFactory = require('creepFactory');
-var roomBuilder = require('roomBuilder');
+// var roomBuilder = require('roomBuilder');
 var roomFoundations = require('roomFoundations');
 var roomSetup = require('roomSetup');
 // const profiler = require('screeps-profiler');
