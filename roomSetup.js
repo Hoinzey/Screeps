@@ -1,19 +1,19 @@
 var roomSetup={
     run : function(currentRoom){
         //Set up the rooms memory objects such as locations of sources
-        findSourceHarvestablePositions(currentRoom);
+        commitRoomSourcesAndSpawnsToMemory(currentRoom);
         // createStartingContainers(currentRoom);
     }
 };
 
-function findSourceHarvestablePositions(currentRoom){
+function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 //Get the an array with objects containing X and Y coords.
+currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
+    let spawnObject={x:finalx, y:finaly,id: spawn.id};
+    console.log("Setting up spawn Info: "+spawnObject)
     var targets = [];
     currentRoom.find(FIND_SOURCES).forEach(function(source){
-        targets.push({x:source.pos.x,y:source.pos.y});
-    });
-    _.each(targets,function(target){
-        let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
+        let tarPos = new RoomPosition(source.x,source.y,currentRoom.name);
         let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
         //Take end points on path for best spot for harvesting
         // pathTiles.forEach(function(dest){
@@ -21,9 +21,8 @@ function findSourceHarvestablePositions(currentRoom){
         //     }
         // });
         console.log("Last point for source is "+ pathTiles[pathTiles.length-1])
-    })
-
-
+    });
+})
     // let sources = currentRoom.find(FIND_SOURCES);
     // currentRoom.memory.totalSources = sources.length;
     // _.each(sources,function(source){
