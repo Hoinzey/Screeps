@@ -7,21 +7,36 @@ var roomSetup={
 };
 
 function commitRoomSourcesAndSpawnsToMemory(currentRoom){
-//Get the an array with objects containing X and Y coords.
 currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
-    let spawnObject={pos:{x:spawn.x, y:spawn.pos.y},id: spawn.id};
-    console.log("Setting up spawn Info: "+ JSON.stringify(spawnObject))
+    let spawnObject={x:spawn.x,y:spawn.pos.y,id: spawn.id};
+    let spawnInformation = currentRoom.memory.spawninfo;
+
+        if(spawnInformation==undefined){
+            console.log("No Source info entry");
+            spawnInformation=[];
+            spawnInformation.push(spawnObject);
+            currentRoom.memory.spawninfo = spawnInformation;
+        }else{
+            spawnInformation.push(spawnObject);
+            currentRoom.memory.spawninfo = spawnInformation;
+        }
+
     currentRoom.find(FIND_SOURCES).forEach(function(source){
-        // console.log(source.pos.x)
-        // console.log(source.pos.y)
         let tarPos = new RoomPosition(source.pos.x,source.pos.y,currentRoom.name);
         let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
-        //Take end points on path for best spot for harvesting
-        // pathTiles.forEach(function(dest){
-        //     if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
-        //     }
-        // });
-        console.log("Last point for source is "+ JSON.stringify(pathTiles[pathTiles.length-2]))
+
+        let sourceObject={x:pathTiles[pathTiles.length-2].x, y:pathTiles[pathTiles.length-2].y,id: source.id};
+        let sourceInformation = currentRoom.memory.sourceinfo;
+
+        if(sourceInformation==undefined){
+            console.log("No Source info entry");
+            sourceInformation=[];
+            sourceInformation.push(sourceObject);
+            currentRoom.memory.sourceinfo = sourceInformation;
+        }else{
+            sourceInformation.push(sourceObject);
+            currentRoom.memory.sourceinfo = sourceInformation;
+        }
     });
 })
     // let sources = currentRoom.find(FIND_SOURCES);
