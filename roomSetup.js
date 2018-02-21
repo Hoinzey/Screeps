@@ -10,16 +10,17 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
     let spawnObject={ x:spawn.pos.x , y:spawn.pos.y , id:spawn.id}
     let spawnInformation = currentRoom.memory.spawninfo
+    currentRoom.memory.spawninfo = undefined;
 
-        if(spawnInformation==undefined){
-            console.log("No Source info entry");
-            spawnInformation=[];
-            spawnInformation.push(spawnObject);
-            currentRoom.memory.spawninfo = spawnInformation;
-        }else{
-            spawnInformation.push(spawnObject);
-            currentRoom.memory.spawninfo = spawnInformation;
-        }
+        // if(spawnInformation==undefined){
+        //     console.log("No Source info entry");
+        //     spawnInformation=[];
+        //     spawnInformation.push(spawnObject);
+        //     currentRoom.memory.spawninfo = spawnInformation;
+        // }else{
+        //     spawnInformation.push(spawnObject);
+        //     currentRoom.memory.spawninfo = spawnInformation;
+        // }
 
     currentRoom.find(FIND_SOURCES).forEach(function(source){
         let tarPos = new RoomPosition(source.pos.x,source.pos.y,currentRoom.name);
@@ -27,16 +28,17 @@ currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
 
         let sourceObject={x:pathTiles[pathTiles.length-2].x, y:pathTiles[pathTiles.length-2].y,id: source.id};
         let sourceInformation = currentRoom.memory.sourceinfo;
+        currentRoom.memory.sourceinfo = undefined;
 
-        if(sourceInformation==undefined){
-            console.log("No Source info entry");
-            sourceInformation=[];
-            sourceInformation.push(sourceObject);
-            currentRoom.memory.sourceinfo = sourceInformation;
-        }else{
-            sourceInformation.push(sourceObject);
-            currentRoom.memory.sourceinfo = sourceInformation;
-        }
+        // if(sourceInformation==undefined){
+        //     console.log("No Source info entry");
+        //     sourceInformation=[];
+        //     sourceInformation.push(sourceObject);
+        //     currentRoom.memory.sourceinfo = sourceInformation;
+        // }else{
+        //     sourceInformation.push(sourceObject);
+        //     currentRoom.memory.sourceinfo = sourceInformation;
+        // }
     });
 })
     // let sources = currentRoom.find(FIND_SOURCES);
