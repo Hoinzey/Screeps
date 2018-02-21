@@ -12,10 +12,10 @@ currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
     let spawnObject={x:spawn.x, y:spawn.pos.y,id: spawn.id};
     console.log("Setting up spawn Info: "+ JSON.stringify(spawnObject))
     currentRoom.find(FIND_SOURCES).forEach(function(source){
-        console.log(source.pos.x)
-        console.log(source.pos.y)
-        // let tarPos = new RoomPosition(source.x,source.y,currentRoom.name);
-        // let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
+        // console.log(source.pos.x)
+        // console.log(source.pos.y)
+        let tarPos = new RoomPosition(source.x,source.y,currentRoom.name);
+        let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
         //Take end points on path for best spot for harvesting
         // pathTiles.forEach(function(dest){
         //     if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
