@@ -10,9 +10,10 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 //Get the an array with objects containing X and Y coords.
 currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
     let spawnObject={x:spawn.x, y:spawn,id: spawn.id};
-    console.log("Setting up spawn Info: "+spawnObject)
-    var targets = [];
+    console.log("Setting up spawn Info: "+ JSON.stringify(spawnObject))
     currentRoom.find(FIND_SOURCES).forEach(function(source){
+        console.log(source.x)
+        console.log(source.y)
         let tarPos = new RoomPosition(source.x,source.y,currentRoom.name);
         let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
         //Take end points on path for best spot for harvesting
