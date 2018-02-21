@@ -9,7 +9,7 @@ var roomSetup={
 function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 //Get the an array with objects containing X and Y coords.
 currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
-    let spawnObject={x:finalx, y:finaly,id: spawn.id};
+    let spawnObject={x:spawn.x, y:spawn,id: spawn.id};
     console.log("Setting up spawn Info: "+spawnObject)
     var targets = [];
     currentRoom.find(FIND_SOURCES).forEach(function(source){
