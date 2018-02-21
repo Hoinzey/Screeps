@@ -8,8 +8,8 @@ var roomSetup={
 
 function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
-    let spawnObject={x:spawn.x,y:spawn.pos.y,id: spawn.id};
-    let spawnInformation = currentRoom.memory.spawninfo;
+    let spawnObject={ x:spawn.x , y:spawn.pos.y , id:spawn.id}
+    let spawnInformation = currentRoom.memory.spawninfo
 
         if(spawnInformation==undefined){
             console.log("No Source info entry");
