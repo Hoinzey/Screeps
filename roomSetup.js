@@ -21,7 +21,7 @@ currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
         //     if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
         //     }
         // });
-        console.log("Last point for source is "+ pathTiles[pathTiles.length-1])
+        console.log("Last point for source is "+ JSON.stringify(pathTiles[pathTiles.length-1]))
     });
 })
     // let sources = currentRoom.find(FIND_SOURCES);
