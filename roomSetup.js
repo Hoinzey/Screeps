@@ -9,7 +9,7 @@ var roomSetup={
 function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 //Get the an array with objects containing X and Y coords.
 currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
-    let spawnObject={x:spawn.x, y:spawn.pos.y,id: spawn.id};
+    let spawnObject={pos:{x:spawn.x, y:spawn.pos.y},id: spawn.id};
     console.log("Setting up spawn Info: "+ JSON.stringify(spawnObject))
     currentRoom.find(FIND_SOURCES).forEach(function(source){
         // console.log(source.pos.x)
@@ -21,7 +21,7 @@ currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
         //     if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
         //     }
         // });
-        console.log("Last point for source is "+ JSON.stringify(pathTiles[pathTiles.length-1]))
+        console.log("Last point for source is "+ JSON.stringify(pathTiles[pathTiles.length-2]))
     });
 })
     // let sources = currentRoom.find(FIND_SOURCES);
