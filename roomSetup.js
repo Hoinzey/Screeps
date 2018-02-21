@@ -2,53 +2,70 @@ var roomSetup={
     run : function(currentRoom){
         //Set up the rooms memory objects such as locations of sources
         findSourceHarvestablePositions(currentRoom);
-        createStartingContainers(currentRoom);
+        // createStartingContainers(currentRoom);
     }
 };
 
 function findSourceHarvestablePositions(currentRoom){
-    let sources = currentRoom.find(FIND_SOURCES);
-    currentRoom.memory.totalSources = sources.length;
-    _.each(sources,function(source){
-        let offset=1;     
-        let counter=0;
-        let xPos = source.pos.x - offset;
-        let yPos = source.pos.y - offset;
-        
-        let finalx;
-        let finaly;
-        let foundDest=false
-        for(var x =xPos; x<=source.pos.x+offset ;x++){
-            if(!foundDest){
-                for(var y=yPos;y<=source.pos.y+offset;y++){
-                    if(!foundDest){
-                        let tiles = currentRoom.lookAt(x,y);
-                        tiles.forEach(function(object){
-                            if(object.type == LOOK_TERRAIN && (object.terrain=='swamp' || object.terrain=='plain')){
-                                finalx = x;
-                                finaly =y;
-                                foundDest=true;
-                            }
-                        });
-                    }else{break;}
-                }
-            }else{break;}
-        }
-        console.log("Setting up sourceInfo");
-        let sourceObject={x:finalx, y:finaly,id: source.id};
-        let sourceInformation = currentRoom.memory.sourceinfo;
-        if(sourceInformation==undefined){
-            console.log("No Source info entry");
-            sourceInformation=[];
-            sourceInformation.push(sourceObject);
-            currentRoom.memory.sourceinfo = sourceInformation;
-            return source;
-        }else{
-            sourceInformation.push(sourceObject);
-            currentRoom.memory.sourceinfo = sourceInformation;
-            return source;
-        }  
+//Get the an array with objects containing X and Y coords.
+    var targets = [];
+    currentRoom.find(FIND_SOURCES).forEach(function(source){
+        targets.push({x:source.pos.x,y:source.pos.y});
+    });
+    _.each(targets,function(target){
+        let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
+        let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
+        //Take end points on path for best spot for harvesting
+        // pathTiles.forEach(function(dest){
+        //     if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
+        //     }
+        // });
+        console.log("Last point for source is "+ pathTiles[pathTiles.length-1])
     })
+
+
+    // let sources = currentRoom.find(FIND_SOURCES);
+    // currentRoom.memory.totalSources = sources.length;
+    // _.each(sources,function(source){
+    //     let offset=1;     
+    //     let counter=0;
+    //     let xPos = source.pos.x - offset;
+    //     let yPos = source.pos.y - offset;
+        
+    //     let finalx;
+    //     let finaly;
+    //     let foundDest=false
+    //     for(var x =xPos; x<=source.pos.x+offset ;x++){
+    //         if(!foundDest){
+    //             for(var y=yPos;y<=source.pos.y+offset;y++){
+    //                 if(!foundDest){
+    //                     let tiles = currentRoom.lookAt(x,y);
+    //                     tiles.forEach(function(object){
+    //                         if(object.type == LOOK_TERRAIN && (object.terrain=='swamp' || object.terrain=='plain')){
+    //                             finalx = x;
+    //                             finaly =y;
+    //                             foundDest=true;
+    //                         }
+    //                     });
+    //                 }else{break;}
+    //             }
+    //         }else{break;}
+    //     }
+    //     console.log("Setting up sourceInfo");
+    //     let sourceObject={x:finalx, y:finaly,id: source.id};
+    //     let sourceInformation = currentRoom.memory.sourceinfo;
+    //     if(sourceInformation==undefined){
+    //         console.log("No Source info entry");
+    //         sourceInformation=[];
+    //         sourceInformation.push(sourceObject);
+    //         currentRoom.memory.sourceinfo = sourceInformation;
+    //         return source;
+    //     }else{
+    //         sourceInformation.push(sourceObject);
+    //         currentRoom.memory.sourceinfo = sourceInformation;
+    //         return source;
+    //     }  
+    // })
 }
 
 function  createStartingContainers(currentRoom){
