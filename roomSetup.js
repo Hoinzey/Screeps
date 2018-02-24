@@ -15,13 +15,13 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
             if(spawnInformation==undefined){
                 console.log("No Source info entry");
                 spawnInformation={};
-                spawnInformation.spawnObject.id=spawnObject;
+                spawnInformation[spawnObject.id]=spawnObject;
                 currentRoom.memory.spawninfo = spawnInformation;
             }else{
-                spawnInformation.spawnObject.id=spawnObject;
+                spawnInformation[spawnObject.id]=spawnObject;
                 currentRoom.memory.spawninfo = spawnInformation;
             }
-
+\
         currentRoom.find(FIND_SOURCES).forEach(function(source){
             let tarPos = new RoomPosition(source.pos.x,source.pos.y,currentRoom.name);
             let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
@@ -33,10 +33,10 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
             if(sourceInformation==undefined){
                 console.log("No Source info entry");
                 sourceInformation={};
-                sourceInformation.sourceObject.id = sourceObject;
+                sourceInformation[sourceObject.id] = sourceObject;
                 currentRoom.memory.sourceinfo = sourceInformation;
             }else{
-                sourceInformation.sourceObject.id = sourceObject;
+                sourceInformation[sourceObject.id] = sourceObject;
                 currentRoom.memory.sourceinfo = sourceInformation;
             }
         });
