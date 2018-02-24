@@ -21,7 +21,7 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
                 spawnInformation[spawnObject.id]=spawnObject;
                 currentRoom.memory.spawninfo = spawnInformation;
             }
-\
+
         currentRoom.find(FIND_SOURCES).forEach(function(source){
             let tarPos = new RoomPosition(source.pos.x,source.pos.y,currentRoom.name);
             let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
