@@ -45,7 +45,8 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 
 function  createStartingContainers(currentRoom){
     currentRoom.find(FIND_SOURCES).forEach(function(source){
-        console.log("Info is :"+currentRoom.memory.sourceinfo[source.id]);
+
+        console.log("Info is :"+JSON.stringify(currentRoom.memory.sourceinfo));
         // console.log(currentRoom.createConstructionSite(Memory.sourceinfo[source.id].pos.x,Memory.sourceinfo[source.id].pos.y,STRUCTURE_CONTAINER));
         // console.log("X:"+Memory.sourceinfo[source.id].x+" Y:"+Memory.sourceinfo[source.id].y);
         if(currentRoom.createConstructionSite(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,STRUCTURE_CONTAINER)==0){
