@@ -14,11 +14,11 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 
             if(spawnInformation==undefined){
                 console.log("No Source info entry");
-                spawnInformation=[];
-                spawnInformation.push(spawnObject);
+                spawnInformation={};
+                spawnInformation.spawnObject.id=spawnObject;
                 currentRoom.memory.spawninfo = spawnInformation;
             }else{
-                spawnInformation.push(spawnObject);
+                spawnInformation.spawnObject.id=spawnObject;
                 currentRoom.memory.spawninfo = spawnInformation;
             }
 
@@ -32,11 +32,11 @@ function commitRoomSourcesAndSpawnsToMemory(currentRoom){
 
             if(sourceInformation==undefined){
                 console.log("No Source info entry");
-                sourceInformation=[];
-                sourceInformation.push(sourceObject);
+                sourceInformation={};
+                sourceInformation.sourceObject.id = sourceObject;
                 currentRoom.memory.sourceinfo = sourceInformation;
             }else{
-                sourceInformation.push(sourceObject);
+                sourceInformation.sourceObject.id = sourceObject;
                 currentRoom.memory.sourceinfo = sourceInformation;
             }
         });
