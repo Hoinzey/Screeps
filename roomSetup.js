@@ -62,9 +62,9 @@ function buildPaths(currentRoom){
             let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
             let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
             pathTiles.forEach(function(dest){
-                // if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
+                currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD)
                 // }
-                currentRoom.createFlag(dest.x,dest.y,null,COLOR_RED);
+                // currentRoom.createFlag(dest.x,dest.y,null,COLOR_RED);
             });
         })
         

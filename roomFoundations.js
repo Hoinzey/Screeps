@@ -24,14 +24,12 @@ var roomFoundations = {
         // })
         if(currentRoom.memory.lastCheckControllerLevel!=undefined){
             if(currentRoom.memory.lastCheckControllerLevel < currentRoom.controller.level){
-                // this.buildPaths(currentRoom);
                 this.buildExtensions(currentRoom);
                 this.buildContainers(currentRoom);
                 currentRoom.memory.lastCheckControllerLevel = currentRoom.controller.level;
             }
         }else{
             currentRoom.memory.lastCheckControllerLevel=0;
-            // this.buildPaths(currentRoom);
             try{
               this.buildContainers(currentRoom);
               this.buildExtensions(currentRoom);
@@ -40,33 +38,6 @@ var roomFoundations = {
             }
         }
     },
-    // buildPaths : function(currentRoom){
-    //     _.each(currentRoom.find(FIND_MY_SPAWNS),function(spawn){
-    //         let spawnInformation = currentRoom.memory.spawnInfo;
-    //         // console.log(spawnInformation);
-    //         if(spawnInformation==undefined){
-    //             let spawnObject = {x:spawn.pos.x,y:spawn.pos.y};
-    //             let  spawnInfo={};
-    //             spawnInfo[spawn.id] = spawnObject;
-    //             currentRoom.memory.spawnInfo=spawnInfo;
-    //         }else if(!_.contains(spawnInformation,spawnInformation[spawn.id])){
-    //             let spawnObject = {x:spawn.pos.x,y:spawn.pos.y};
-    //             currentRoom.memory.spawnInfo[spawn.id] = spawnObject;
-    //         }
-    //         let targets = pathTargets(currentRoom);
-    //         // console.log(targets.length);
-    //         _.each(targets,function(target){
-    //             let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
-    //             let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
-    //             pathTiles.forEach(function(dest){
-    //                 // if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
-    //                 // }
-    //                 currentRoom.createFlag(dest.x,dest.y,null,COLOR_RED);
-    //             });
-    //         })
-            
-    //     })
-    // },
     buildContainers : function(currentRoom){
         let containerAllowance = 0;
         for(var count=0; count <= currentRoom.controller.level; count++ ){
@@ -103,7 +74,6 @@ var roomFoundations = {
         var currentAmountOfExtensions = currentRoom.find(FIND_STRUCTURES, {filter: (structure) => structure.structureType == STRUCTURE_EXTENSION}).length;
         currentAmountOfExtensions += currentRoom.find(FIND_CONSTRUCTION_SITES, {filter: (constructionSite) => constructionSite.structureType == STRUCTURE_EXTENSION}).length
         if(currentAmountOfExtensions<extensionAllowance){
-            let counter=0;
             currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
                 let offset=2;
                 while(currentAmountOfExtensions<extensionAllowance){
