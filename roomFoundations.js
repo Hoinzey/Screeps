@@ -23,7 +23,7 @@ var roomFoundations = {
         //     site.remove();
         // })
         this.buildContainers(currentRoom);
-        // this.buildExtensions(currentRoom);
+        this.buildExtensions(currentRoom);
         this.buildPaths(currentRoom);
         // if(currentRoom.memory.spawnInfo==undefined){
             
