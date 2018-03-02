@@ -81,7 +81,8 @@ var roomFoundations = {
                     let yPos = spawn.pos.y - offset;
                         for(var x =xPos; x<=spawn.pos.x+offset ;x++){
                             for(var y=yPos;y<=spawn.pos.y+offset;y++){
-                                console.log("Validating X:"+x+" Y:"+y);
+                                console.log("Validating X:"+x+" Y:"+y+" total is at "+currentAmountOfExtensions);
+                                console.log("Offset: "+offset);
                                 if(currentAmountOfExtensions==extensionAllowance){
                                     break;
                                 }
