@@ -79,16 +79,16 @@ var roomFoundations = {
                 while(currentAmountOfExtensions<extensionAllowance){
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
-                        for(xPos; x<=spawn.pos.x+offset ;xPos++){
-                            for(yPos;y<=spawn.pos.y+offset;yPos++){
-                                console.log("Validating X:"+x+" Y:"+y+" total is at "+currentAmountOfExtensions+" of "+extensionAllowance);
+                        for(xPos; xPos<=spawn.pos.x+offset ;xPos++){
+                            for(yPos;yPos<=spawn.pos.y+offset;yPos++){
+                                console.log("Validating X:"+xPos+" Y:"+yPos+" total is at "+currentAmountOfExtensions+" of "+extensionAllowance);
                                 console.log("Offset: "+offset);
                                 if(currentAmountOfExtensions==extensionAllowance){
                                     break;
                                 }
-                                if(checkAdjacentSquaresForExtensionOrWall(x,y,currentRoom)===true){
+                                if(checkAdjacentSquaresForExtensionOrWall(xPos,yPos,currentRoom)===true){
                                     console.log("---------------------------------------------------------------")
-                                    if(currentRoom.createConstructionSite(x,y,STRUCTURE_EXTENSION) == 0){
+                                    if(currentRoom.createConstructionSite(xPos,yPos,STRUCTURE_EXTENSION) == 0){
                                         currentAmountOfExtensions++
                                         // currentRoom.createConstructionSite(x-1,y,STRUCTURE_ROAD);
                                         // currentRoom.createConstructionSite(x+1,y,STRUCTURE_ROAD);    
