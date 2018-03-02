@@ -24,7 +24,7 @@ var roomFoundations = {
         // })
         // this.buildContainers(currentRoom);
         // this.buildExtensions(currentRoom);
-        // this.buildPaths(currentRoom);
+        this.buildPaths(currentRoom);
         // if(currentRoom.memory.spawnInfo==undefined){
             
         // }
@@ -47,7 +47,6 @@ var roomFoundations = {
         //         console.log("Cannae handle this atm");
         //     }
         // }
-    
     },
     buildPaths : function(currentRoom){
         _.each(currentRoom.find(FIND_MY_SPAWNS),function(spawn){
@@ -68,8 +67,9 @@ var roomFoundations = {
                 let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
                 let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
                 pathTiles.forEach(function(dest){
-                    if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
-                    }
+                    // if(currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD) != 0){
+                    // }
+                    currentRoom.createFlag(dest.x,dest.y,null,COLOR_RED);
                 });
             })
             

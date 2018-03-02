@@ -11,11 +11,10 @@ module.exports.loop = function () {
     // profiler.wrap(function() {
     for(var currentRoomName in Game.rooms){
         var currentRoom = Game.rooms[currentRoomName];
-        // if(currentRoom.memory.setupComplete==undefined){
+        if(currentRoom.memory.setupComplete==undefined){
             roomSetup.run(currentRoom);
-            // currentRoom.memory.setupComplete = true;
-        // }
-        // Testwwww
+            currentRoom.memory.setupComplete = true;
+        }
         // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
         // roomFoundations.buildRoom(currentRoom);
         // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
