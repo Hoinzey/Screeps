@@ -113,7 +113,7 @@ var roomFoundations = {
         if(currentAmountOfExtensions<extensionAllowance){
             let counter=0;
             currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
-                let offset=1;
+                let offset=2;
                 while(currentAmountOfExtensions<extensionAllowance){
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
