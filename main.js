@@ -14,9 +14,10 @@ module.exports.loop = function () {
         if(currentRoom.memory.setupComplete==undefined){
             roomSetup.run(currentRoom);
             currentRoom.memory.setupComplete = true;
+            roomFoundations.buildRoom(currentRoom);
         }
         // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
-        roomFoundations.buildRoom(currentRoom);
+       
         // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
         // creepFactory.run(currentRoom);
         // creepHandler.run(currentRoom);
