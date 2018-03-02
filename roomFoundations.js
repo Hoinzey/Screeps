@@ -79,9 +79,9 @@ var roomFoundations = {
                 while(currentAmountOfExtensions<extensionAllowance){
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
-                        for(var x =xPos; x<=spawn.pos.x+offset ;x++){
-                            for(var y=yPos;y<=spawn.pos.y+offset;y++){
-                                console.log("Validating X:"+x+" Y:"+y+" total is at "+currentAmountOfExtensions);
+                        for(xPos; x<=spawn.pos.x+offset ;xPos++){
+                            for(yPos;y<=spawn.pos.y+offset;yPos++){
+                                console.log("Validating X:"+x+" Y:"+y+" total is at "+currentAmountOfExtensions+" of "+extensionAllowance);
                                 console.log("Offset: "+offset);
                                 if(currentAmountOfExtensions==extensionAllowance){
                                     break;
@@ -99,8 +99,8 @@ var roomFoundations = {
                         }
                     offset++
                 }
-                });
-            }
+            });
+        }
     }
 };
 function checkAdjacentSquaresForExtensionOrWall(x,y,currentRoom){
