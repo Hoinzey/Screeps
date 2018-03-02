@@ -22,31 +22,31 @@ var roomFoundations = {
         // conSites.forEach(function(site){
         //     site.remove();
         // })
-        this.buildContainers(currentRoom);
-        this.buildExtensions(currentRoom);
-        this.buildPaths(currentRoom);
+        // this.buildPaths(currentRoom);
+        // this.buildContainers(currentRoom);
+        // this.buildExtensions(currentRoom);
         // if(currentRoom.memory.spawnInfo==undefined){
             
         // }
         // this.buildExtensions(currentRoom);
         // this.buildContainers(currentRoom);
-        // if(currentRoom.memory.lastCheckControllerLevel!=undefined){
-        //     if(currentRoom.memory.lastCheckControllerLevel < currentRoom.controller.level){
-        //         this.buildPaths(currentRoom);
-        //         this.buildExtensions(currentRoom);
-        //         this.buildContainers(currentRoom);
-        //         currentRoom.memory.lastCheckControllerLevel = currentRoom.controller.level;
-        //     }
-        // }else{
-        //     currentRoom.memory.lastCheckControllerLevel=0;
-        //     this.buildPaths(currentRoom);
-        //     try{
-        //       this.buildContainers(currentRoom);
-        //       this.buildExtensions(currentRoom);
-        //     }catch(err){
-        //         console.log("Cannae handle this atm");
-        //     }
-        // }
+        if(currentRoom.memory.lastCheckControllerLevel!=undefined){
+            if(currentRoom.memory.lastCheckControllerLevel < currentRoom.controller.level){
+                this.buildPaths(currentRoom);
+                this.buildExtensions(currentRoom);
+                this.buildContainers(currentRoom);
+                currentRoom.memory.lastCheckControllerLevel = currentRoom.controller.level;
+            }
+        }else{
+            currentRoom.memory.lastCheckControllerLevel=0;
+            this.buildPaths(currentRoom);
+            try{
+              this.buildContainers(currentRoom);
+              this.buildExtensions(currentRoom);
+            }catch(err){
+                console.log("Cannae handle this atm");
+            }
+        }
     },
     buildPaths : function(currentRoom){
         _.each(currentRoom.find(FIND_MY_SPAWNS),function(spawn){
