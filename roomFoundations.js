@@ -156,6 +156,18 @@ function checkAdjacentSquaresForExtensionOrWall(x,y,currentRoom){
      return validTile && hasSomethingBesideIt;
 }
 
+function surroundWithPaths(x,y,currentRoom){
+    let offset=1;
+    let xPos = x-offset;
+    let yPos = y-offset;
+    for(xPos ; xPos<x+offset; x++){
+        yPos = y-offset;
+        for(let yPos = y-offset; yPos<y+offset; x++){
+            currentRoom.createConstructionSite(xPos,yPos,STRUCTURE_ROAD)
+        }            
+    }
+}
+
 
 
 module.exports = roomFoundations;
