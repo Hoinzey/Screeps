@@ -40,6 +40,7 @@ var roomFoundations = {
         }
     },
     buildContainers : function(currentRoom){
+        console.log("Starting Containers");
         let containerAllowance = 0;
         for(var count=0; count <= currentRoom.controller.level; count++ ){
             containerAllowance += CONTROLLER_STRUCTURES.container[count];
@@ -66,8 +67,10 @@ var roomFoundations = {
                 // }
             });
         }
+        console.log("Finishing Extensions");
     },
     buildExtensions : function(currentRoom){
+        console.log("Making Extensions");
         let extensionAllowance = 0;
         for(var count=0; count <= currentRoom.controller.level; count++ ){
             extensionAllowance += CONTROLLER_STRUCTURES.extension[count];
@@ -77,7 +80,6 @@ var roomFoundations = {
         if(currentAmountOfExtensions<extensionAllowance){
             currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
                 let offset=2;
-                console.log("Starting at "+currentAmountOfExtensions+" to "+extensionAllowance);
                 while(currentAmountOfExtensions<extensionAllowance){
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
@@ -108,9 +110,9 @@ var roomFoundations = {
                         console.log("-increasing offset")
                     // offset++
                 }
-                console.log("Out")
             });
         }
+        console.log("Finishing Extensions");
     }
 };
 function checkAdjacentSquaresForExtensionOrWall(x,y,currentRoom){
