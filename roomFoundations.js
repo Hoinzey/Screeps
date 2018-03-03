@@ -79,8 +79,10 @@ var roomFoundations = {
                 while(currentAmountOfExtensions<extensionAllowance){
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
-                        for(xPos; xPos<=spawn.pos.x+offset ;xPos--){
-                            for(yPos;yPos<=spawn.pos.y+offset;yPos--){
+                        for(xPos; xPos<=spawn.pos.x+offset ;xPos++){
+                            console.log("X: "+xPos);
+                            for(yPos;yPos<=spawn.pos.y+offset;yPos++){
+                                console.log("Y: "+yPos);
                                 console.log("Validating X:"+xPos+" Y:"+yPos+" total is at "+currentAmountOfExtensions+" of "+extensionAllowance);
                                 console.log("Offset: "+offset);
                                 if(currentAmountOfExtensions==extensionAllowance){
@@ -97,6 +99,7 @@ var roomFoundations = {
                                 }
                             }
                         }
+                        console.log("-increasing offset")
                     offset++
                 }
             });
