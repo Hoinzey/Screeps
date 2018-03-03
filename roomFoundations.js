@@ -50,21 +50,21 @@ var roomFoundations = {
         console.log("Total:"+containerAllowance+" Current:"+currentAmountOfContainers);
         if(currentAmountOfContainers<containerAllowance){
             currentRoom.find(FIND_SOURCES).forEach(function(source){
-                currentRoom.createFlag(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,null,COLOR_BLUE);
-                // if(currentRoom.createConstructionSite(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,STRUCTURE_CONTAINER)==0){
-                //     let containerPosition = new RoomPosition(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,currentRoom.name);
-                //     let sourceContainers = currentRoom.memory.sourceContainers;
-                //     let containerObject = containerPosition;
-                //     if(sourceContainers==undefined){
-                //         console.log("No memory entry");
-                //         sourceContainers={};
-                //         sourceContainers[currentRoom.name+" "+containerPosition.x+" "+containerPosition.y] = containerObject;
-                //         currentRoom.memory.sourceContainers = sourceContainers;
-                //     }else{
-                //         sourceContainers[currentRoom.name+" "+containerPosition.x+" "+containerPosition.y] = containerObject;
-                //         currentRoom.memory.sourceContainers = sourceContainers;
-                //     }
-                // }
+                // currentRoom.createFlag(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,null,COLOR_BLUE);
+                if(currentRoom.createConstructionSite(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,STRUCTURE_CONTAINER)==0){
+                    let containerPosition = new RoomPosition(currentRoom.memory.sourceinfo[source.id].x,currentRoom.memory.sourceinfo[source.id].y,currentRoom.name);
+                    let sourceContainers = currentRoom.memory.sourceContainers;
+                    let containerObject = containerPosition;
+                    if(sourceContainers==undefined){
+                        console.log("No memory entry");
+                        sourceContainers={};
+                        sourceContainers[currentRoom.name+" "+containerPosition.x+" "+containerPosition.y] = containerObject;
+                        currentRoom.memory.sourceContainers = sourceContainers;
+                    }else{
+                        sourceContainers[currentRoom.name+" "+containerPosition.x+" "+containerPosition.y] = containerObject;
+                        currentRoom.memory.sourceContainers = sourceContainers;
+                    }
+                }
             });
         }
         console.log("Finishing Extensions");
