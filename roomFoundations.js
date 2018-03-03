@@ -24,6 +24,7 @@ var roomFoundations = {
         // })
         if(currentRoom.memory.lastCheckControllerLevel!=undefined){
             if(currentRoom.memory.lastCheckControllerLevel < currentRoom.controller.level){
+                console.log("Building stuff")
                 this.buildExtensions(currentRoom);
                 this.buildContainers(currentRoom);
                 currentRoom.memory.lastCheckControllerLevel = currentRoom.controller.level;
@@ -76,6 +77,7 @@ var roomFoundations = {
         if(currentAmountOfExtensions<extensionAllowance){
             currentRoom.find(FIND_MY_SPAWNS).forEach(function(spawn){
                 let offset=2;
+                console.log("Starting at "+currentAmountOfExtensions+" to "+extensionAllowance);
                 while(currentAmountOfExtensions<extensionAllowance){
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
