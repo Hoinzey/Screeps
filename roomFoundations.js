@@ -100,6 +100,7 @@ var roomFoundations = {
                                     console.log("---------------------------------------------------------------")
                                     if(currentRoom.createConstructionSite(xPos,yPos,STRUCTURE_EXTENSION) == 0){
                                         currentAmountOfExtensions++
+                                        surroundWithPaths(xPos,yPos,currentRoom);
                                         // currentRoom.createConstructionSite(x-1,y,STRUCTURE_ROAD);
                                         // currentRoom.createConstructionSite(x+1,y,STRUCTURE_ROAD);    
                                         console.log("---------------------------------------------------------------")
