@@ -161,9 +161,9 @@ function surroundWithPaths(x,y,currentRoom){
     let offset=1;
     let xPos = x-offset;
     let yPos = y-offset;
-    for(xPos ; xPos<x+offset; x++){
+    for(xPos ; xPos<x+offset; xPos++){
         yPos = y-offset;
-        for(let yPos = y-offset; yPos<y+offset; x++){
+        for(yPos; yPos<y+offset; yPos++){
             currentRoom.createConstructionSite(xPos,yPos,STRUCTURE_ROAD)
         }            
     }
