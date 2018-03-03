@@ -16,11 +16,9 @@ module.exports.loop = function () {
             currentRoom.memory.setupComplete = true;
         }
         roomFoundations.buildRoom(currentRoom);
-        // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
-       
-        // currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
-        // creepFactory.run(currentRoom);
-        // creepHandler.run(currentRoom);
+        currentRoom.memory.structures = currentRoom.find(FIND_STRUCTURES);
+        creepFactory.run(currentRoom);
+        creepHandler.run(currentRoom);
     }
     
     // var tower = Game.getObjectById('58a8a84fca7c6f4d60332527');

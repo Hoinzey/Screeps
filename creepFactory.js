@@ -1,4 +1,3 @@
-// var spawn = Game.spawns['Spawn1'];
 var creepFactory = {
     run: function(currentRoom){
         var currentRoomSpawns = currentRoom.find(FIND_MY_SPAWNS);
@@ -23,26 +22,26 @@ var creepFactory = {
             var totalfounders = _.filter(Game.creeps, (creep) => creep.memory.role == 'founder' && creep.pos.roomName == currentRoom.name);
             var constructionSites = currentRoom.find(FIND_CONSTRUCTION_SITES);
             var energyAvailable = currentRoom.energyAvailable
-            if(Memory.siegeRoom!=undefined){
-                if(totalScouts<1){
-                    currentSpawn.createCreep([MOVE],{role:'scout'});
-                    console.log("Spawning Scout");
-                }
-                if(Memory.siegeRoom.enemiesPresent==true){
-                    if(totalSiegers<2){
-                        console.log("Spawning Sieger");
-                        currentSpawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,MOVE,MOVE],{role:'sieger'});
-                    }
-                }
-                if(Memory.siegeRoom.claim==true && totalClaimers.length<1){
-                    console.log("Spawning claimer");
-                    currentSpawn.createCreep([CLAIM,MOVE],{role:'claimer'});
-                }
-                if(Memory.siegeRoom.claimed==true && totalfounders.length<2){
-                    console.log("Spawning founder");
-                    currentSpawn.createCreep([WORK,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],{role:'founder'});
-                }
-            }
+            // if(Memory.siegeRoom!=undefined){
+            //     if(totalScouts<1){
+            //         currentSpawn.createCreep([MOVE],{role:'scout'});
+            //         console.log("Spawning Scout");
+            //     }
+            //     if(Memory.siegeRoom.enemiesPresent==true){
+            //         if(totalSiegers<2){
+            //             console.log("Spawning Sieger");
+            //             currentSpawn.createCreep([TOUGH,TOUGH,TOUGH,TOUGH,ATTACK,ATTACK,MOVE,MOVE],{role:'sieger'});
+            //         }
+            //     }
+            //     if(Memory.siegeRoom.claim==true && totalClaimers.length<1){
+            //         console.log("Spawning claimer");
+            //         currentSpawn.createCreep([CLAIM,MOVE],{role:'claimer'});
+            //     }
+            //     if(Memory.siegeRoom.claimed==true && totalfounders.length<2){
+            //         console.log("Spawning founder");
+            //         currentSpawn.createCreep([WORK,MOVE,MOVE,MOVE,MOVE,CARRY,CARRY,CARRY,CARRY],{role:'founder'});
+            //     }
+            // }
     
             if(totalCreepCount.length<1|| totalCreepCount == undefined){
                 // console.log('I have no creeps!');
@@ -50,7 +49,7 @@ var creepFactory = {
             }
             else
             if(totalGremlins.length<1 || totalGremlins == undefined){
-                console.log('I need more gremlins!');
+                // console.log('I need more gremlins!');
                 currentSpawn.createCreep([CARRY,CARRY,MOVE],{role:'gremlin'});
             }
             else if(totalHarvesters.length<2){
@@ -78,7 +77,6 @@ var creepFactory = {
                  currentSpawn.createCreep([WORK,CARRY,MOVE],{role:'builder'});
                 }
             }
-            // else 
             else if(totalUpgraders.length<2){
                 if(energyAvailable >=600){
                  currentSpawn.createCreep([WORK,WORK,WORK,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE],{role:'upgrader'});
@@ -100,11 +98,7 @@ var creepFactory = {
                   currentSpawn.createCreep([WORK,CARRY,MOVE],{role:'repairer'});
                  }
             }
-            // else if(currentRoom.energyAvailable == currentRoom.energyCapacityAvailable){
-            //     currentSpawn.createCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],{role:'upgrader'});
-            // }
         }
     }
 };
-
 module.exports = creepFactory
