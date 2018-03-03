@@ -80,6 +80,9 @@ var roomFoundations = {
                     let xPos = spawn.pos.x - offset;
                     let yPos = spawn.pos.y - offset;
                         for(xPos; xPos<=spawn.pos.x+offset ;xPos++){
+                            if(currentAmountOfExtensions==extensionAllowance){
+                                break;
+                            }
                             console.log("X: "+xPos);
                             yPos = spawn.pos.y - offset;
                             for(yPos;yPos<=spawn.pos.y+offset;yPos++){
