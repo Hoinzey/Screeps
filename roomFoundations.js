@@ -104,7 +104,7 @@ var roomFoundations = {
                             }
                         }
                         console.log("-increasing offset")
-                    offset++
+                    // offset++
                 }
             });
         }
