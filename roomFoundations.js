@@ -106,6 +106,7 @@ var roomFoundations = {
                         console.log("-increasing offset")
                     // offset++
                 }
+                console.log("Out")
             });
         }
     }
