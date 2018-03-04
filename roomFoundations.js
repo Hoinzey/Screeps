@@ -115,8 +115,36 @@ var roomFoundations = {
             });
         }
         console.log("Finishing Extensions");
+    },
+    buildPaths : function(currentRoom){
+        _.each(currentRoom.find(FIND_MY_SPAWNS),function(spawn){
+            let spawnInformation = currentRoom.memory.spawnInfo;
+            // console.log(spawnInformation);
+            if(spawnInformation==undefined){
+                let spawnObject = {x:spawn.pos.x,y:spawn.pos.y};
+                let  spawnInfo={};
+                spawnInfo[spawn.id] = spawnObject;
+                currentRoom.memory.spawnInfo=spawnInfo;
+            }else if(!_.contains(spawnInformation,spawnInformation[spawn.id])){
+                let spawnObject = {x:spawn.pos.x,y:spawn.pos.y};
+                currentRoom.memory.spawnInfo[spawn.id] = spawnObject;
+            }
+            let targets = pathTargets(currentRoom);
+            // console.log(targets.length);
+            _.each(targets,function(target){
+                let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
+                let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
+                pathTiles.forEach(function(dest){
+                    currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD)
+                    // }
+                    // currentRoom.createFlag(dest.x,dest.y,null,COLOR_RED);
+                });
+            })
+            
+        })
     }
 };
+
 function checkAdjacentSquaresForExtensionOrWall(x,y,currentRoom){
     let offset=1;
     let xPosition = x - offset;
@@ -168,34 +196,6 @@ function surroundWithPaths(x,y,currentRoom){
             currentRoom.createConstructionSite(xPos,yPos,STRUCTURE_ROAD)
         }            
     }
-}
-
-function buildPaths(currentRoom){
-    _.each(currentRoom.find(FIND_MY_SPAWNS),function(spawn){
-        let spawnInformation = currentRoom.memory.spawnInfo;
-        // console.log(spawnInformation);
-        if(spawnInformation==undefined){
-            let spawnObject = {x:spawn.pos.x,y:spawn.pos.y};
-            let  spawnInfo={};
-            spawnInfo[spawn.id] = spawnObject;
-            currentRoom.memory.spawnInfo=spawnInfo;
-        }else if(!_.contains(spawnInformation,spawnInformation[spawn.id])){
-            let spawnObject = {x:spawn.pos.x,y:spawn.pos.y};
-            currentRoom.memory.spawnInfo[spawn.id] = spawnObject;
-        }
-        let targets = pathTargets(currentRoom);
-        // console.log(targets.length);
-        _.each(targets,function(target){
-            let tarPos = new RoomPosition(target.x,target.y,currentRoom.name);
-            let pathTiles = currentRoom.findPath(spawn.pos,tarPos,{ignoreCreeps:true});
-            pathTiles.forEach(function(dest){
-                currentRoom.createConstructionSite(dest.x,dest.y,STRUCTURE_ROAD)
-                // }
-                // currentRoom.createFlag(dest.x,dest.y,null,COLOR_RED);
-            });
-        })
-        
-    })
 }
 
 function pathTargets(currentRoom){
