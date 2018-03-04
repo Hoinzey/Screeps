@@ -2,7 +2,6 @@ var roomSetup={
     run : function(currentRoom){
         //Set up the rooms memory objects such as locations of sources
         commitRoomSourcesAndSpawnsToMemory(currentRoom);
-        buildPaths(currentRoom);
     }
 };
 
