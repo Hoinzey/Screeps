@@ -1,16 +1,28 @@
-var sourceSelector = require('sourceSelector');
-var harvester = {
-     run: function(creep) {
-        let source = sourceSelector.selectSource(creep);
-        let harvestPoint = creep.memory.harvestSpot;
-        let sourceContainerPositions = creep.room.memory.sourceinfo;
-        creep.memory.harvestSpot = sourceContainerPositions[source.id];
-        if(!creep.pos.isEqualTo(harvestPoint.x,harvestPoint.y)){
-            // console.log(creep.name+ " is here moving to source "+source.pos.x+" "+source.pos.y +" i am at "+creep.pos.x+" "+creep.pos.y)
-            creep.moveTo(harvestPoint.x,harvestPoint.y);
+var roleHarvester = {
+
+    /** @param {Creep} creep **/
+    run: function(creep) {
+	    if(creep.carry.energy < creep.carryCapacity) {
+            var sources = creep.room.find(FIND_SOURCES);
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+            }
         }
-            creep.harvest(source);
-    }
+        else {
+            var targets = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION ||
+                                structure.structureType == STRUCTURE_SPAWN ||
+                                structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
+                    }
+            });
+            if(targets.length > 0) {
+                if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+            }
+        }
+	}
 };
 
-module.exports = harvester;
+module.exports = roleHarvester;
