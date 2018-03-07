@@ -10,7 +10,7 @@ module.exports.loop = function () {
 
 function buildPaths(room){
     //room.createFlag(x,y,COLOR_RED)
-    console.log(JSON.stringify( room.find(FIND_MY_SPAWNS)));
+    console.log(JSON.stringify(room.find(FIND_MY_SPAWNS).pos));
 
     //createConstructionSite
 }
