@@ -3,7 +3,7 @@ var creepManager = require('creepManager');
 module.exports.loop = function () {
     for(var currentRoomName in Game.rooms){
         var currentRoom = Game.rooms[currentRoomName];
-        buildPaths(currentRoom);
+        buildPaths(JSON.stringify(currentRoom));
         creepManager.run(currentRoom);
     }
 }
